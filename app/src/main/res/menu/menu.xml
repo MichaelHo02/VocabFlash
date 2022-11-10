@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/words"
+        android:icon="@drawable/ic_baseline_menu_book_24"
+        android:title="Words" />
+
+    <item
+        android:id="@+id/learning"
+        android:icon="@drawable/ic_baseline_school_24"
+        android:title="Learning" />
+
+    <item
+        android:id="@+id/library"
+        android:icon="@drawable/ic_baseline_library_books_24"
+        android:title="Library" />
+
+</menu>
