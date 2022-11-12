@@ -1,6 +1,8 @@
-package michael.vocabflash;
+package michael.vocabflash.Model;
 
-public class Vocab {
+import java.io.Serializable;
+
+public class Vocab implements Serializable {
     private String word;
 
     public Vocab(String word) {

@@ -1,4 +1,4 @@
-package michael.vocabflash;
+package michael.vocabflash.Activity;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -12,6 +12,13 @@ import android.view.Menu;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.List;
+
+import michael.vocabflash.Fragment.LearningFragment;
+import michael.vocabflash.Fragment.LibraryFragment;
+import michael.vocabflash.Fragment.WordsFragment;
+import michael.vocabflash.R;
+import michael.vocabflash.Model.Vocab;
+import michael.vocabflash.Intergrate.VocabAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private NavigationBarView navigationBarView;

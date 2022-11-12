@@ -1,4 +1,4 @@
-package michael.vocabflash;
+package michael.vocabflash.Intergrate;
 
 import androidx.recyclerview.widget.RecyclerView;
 

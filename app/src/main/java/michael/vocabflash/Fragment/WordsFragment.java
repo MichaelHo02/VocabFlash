@@ -1,28 +1,31 @@
-package michael.vocabflash;
+package michael.vocabflash.Fragment;
 
-import android.graphics.Insets;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.viewmodel.CreationExtras;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.divider.MaterialDividerItemDecoration;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.snackbar.SnackbarContentLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+import michael.vocabflash.Activity.CreationActivity;
+import michael.vocabflash.Activity.DetailActivity;
+import michael.vocabflash.Intergrate.IClickItemListener;
+import michael.vocabflash.Intergrate.ItemTouchHelperListener;
+import michael.vocabflash.R;
+import michael.vocabflash.Intergrate.RecycleViewItemTouchHelper;
+import michael.vocabflash.Model.Vocab;
+import michael.vocabflash.Intergrate.VocabAdapter;
 
 public class WordsFragment extends Fragment implements ItemTouchHelperListener {
 
@@ -30,6 +33,7 @@ public class WordsFragment extends Fragment implements ItemTouchHelperListener {
     private VocabAdapter vocabAdapter;
     private List<Vocab> vocabList;
     private View view;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,22 +47,22 @@ public class WordsFragment extends Fragment implements ItemTouchHelperListener {
         view = inflater.inflate(R.layout.fragment_words, container, false);
 
         recyclerView = view.findViewById(R.id.words_recycle_view);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
         vocabList = getVocabList();
-        vocabAdapter = new VocabAdapter(vocabList);
+        vocabAdapter = new VocabAdapter(vocabList, this::onClickGoToDetail);
         recyclerView.setAdapter(vocabAdapter);
-
-        MaterialDividerItemDecoration decoration = new MaterialDividerItemDecoration(view.getContext(), MaterialDividerItemDecoration.VERTICAL);
-        decoration.setDividerInsetStart(16);
-        decoration.setDividerInsetEnd(16);
-        decoration.setLastItemDecorated(false);
-
-//        recyclerView.addItemDecoration(decoration);
 
         ItemTouchHelper.SimpleCallback simpleCallback = new RecycleViewItemTouchHelper(0, ItemTouchHelper.LEFT, this);
         new ItemTouchHelper(simpleCallback).attachToRecyclerView(recyclerView);
+
+        floatingActionButton = view.findViewById(R.id.words_add_btn);
+        floatingActionButton.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), CreationActivity.class);
+            startActivityForResult(intent, 100);
+        });
 
         return view;
     }
@@ -79,14 +83,22 @@ public class WordsFragment extends Fragment implements ItemTouchHelperListener {
             final int idxDel = viewHolder.getAdapterPosition();
 
             vocabAdapter.removeItem(idxDel);
-
             Snackbar snackbar = Snackbar.make(view, "You just delete an item " + itemDel, Snackbar.LENGTH_LONG);
             snackbar.setAction("UNDO", view -> {
                 vocabAdapter.undoItem(vocab, idxDel);
             });
-            snackbar.setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE);
-            snackbar.setAnchorView(view.getRootView().findViewById(R.id.bottom_navigation));
+            snackbar.setAnchorView(view.findViewById(R.id.words_add_btn));
             snackbar.show();
         }
+    }
+
+    private void onClickGoToDetail(Vocab vocab) {
+        Intent intent = new Intent(view.getContext(), DetailActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("data", vocab);
+        intent.putExtras(bundle);
+
+        startActivityForResult(intent, 110);
     }
 }

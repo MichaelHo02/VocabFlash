@@ -1,4 +1,4 @@
-package michael.vocabflash;
+package michael.vocabflash.Fragment;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import michael.vocabflash.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LearningFragment#newInstance} factory method to
+ * Use the {@link LibraryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LearningFragment extends Fragment {
+public class LibraryFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class LearningFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public LearningFragment() {
+    public LibraryFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class LearningFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment LearnFragment.
+     * @return A new instance of fragment LibraryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LearningFragment newInstance(String param1, String param2) {
-        LearningFragment fragment = new LearningFragment();
+    public static LibraryFragment newInstance(String param1, String param2) {
+        LibraryFragment fragment = new LibraryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,6 @@ public class LearningFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_learn, container, false);
+        return inflater.inflate(R.layout.fragment_library, container, false);
     }
 }

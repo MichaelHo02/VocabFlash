@@ -1,4 +1,4 @@
-package michael.vocabflash;
+package michael.vocabflash.Intergrate;
 
 import android.graphics.Canvas;
 import android.view.View;

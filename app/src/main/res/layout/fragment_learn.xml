@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".LearningFragment" >
+    tools:context=".Fragment.LearningFragment" >
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout_learning"
@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="Learning"
-
             app:menu="@menu/custom_menu" />
     </com.google.android.material.appbar.AppBarLayout>
 
